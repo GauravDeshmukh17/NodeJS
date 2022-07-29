@@ -23,16 +23,23 @@ const store=require("../JS/temp");
 // let get=store.add+"";
 // console.log(get);
 
-let ans1=store.arr;
-console.log(ans1);
+// let ans1=store.arr;
+// console.log(ans1);
 
-let ans2=store.sub(56,78);
-console.log(ans2);
+// let ans2=store.sub(56,78);
+// console.log(ans2);
 
-let ans3=store.arr["4"];
-console.log(ans3);
+// let ans3=store.arr["4"];
+// console.log(ans3);
 
-let ans4=store.name;
-console.log(ans4);
+// let ans4=store.name;
+// console.log(ans4);
 
 
+// existsSync("path_of_file") -> checks weather the given file is present or not 
+
+let ans5=a.existsSync("file1.txt");
+console.log(ans5);
+
+let ans6=a.existsSync("file2.txt");
+console.log(ans6);
