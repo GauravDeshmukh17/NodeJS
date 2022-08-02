@@ -35,20 +35,22 @@ for(let i=0;i<filesArr.length;i++){
 let content= "";
 for(let i=0;i<filesArr.length;i++){
     let fileContent=fs.readFileSync(filesArr[i]);
-    content=content+fileContent+ "\n";
+    content=content+fileContent+ "\r\n";
 }
 
 // console.log(content);
 
-contentArr=content.split("\n");
+contentArr=content.split("\r\n");
 // console.log(contentArr);
 
-for(let i=0;i<contentArr.length;i++){
+
+
+/*for(let i=0;i<contentArr.length;i++){
     if(contentArr[i]=='\r'){
-        contentArr[i]="";
+        contentArr[i]="";                 // do't use
     }
     
-}
+}*/
 
 
 let isPresent=optionArr.includes("-s");
@@ -63,7 +65,7 @@ if(isPresent){
     }
 }
 
-// console.log(contentArr);
+// console.table(contentArr);
 
 
 
@@ -75,6 +77,71 @@ for(let i=0;i<contentArr.length;i++){
     }
 }
 
-console.log(tempArr);
+
+// console.log(tempArr);
+for(let i=0;i<tempArr.length;i++){
+    console.log(tempArr[i]);
+}
+
+
+
+contentArr=tempArr
+
+// choosing -n or -b
+let indexOfN=optionArr.indexOf("-n");
+let indexOfB=optionArr.indexOf("-b");
+// if -n or -b is not found then -1 is return
+
+let finalOption="";
+
+if(indexOfN!=-1 && indexOfB!=-1){
+    if(indexOfN<indexOfB){
+        finalOption="-n";
+    }
+    else{
+        finalOption="-b";
+    }
+}
+else{
+    if(indexOfN==-1){
+        finalOption="-b";
+    }else{
+        finalOption="-n";
+    }
+}
+
+
+// calling of function by evaluating values of -n and -b 
+if(finalOption=="-n"){
+    valueOfN();
+}
+else if(finalOption=="-b"){
+    valueOfB();
+}
+
+function valueOfN(){
+    for(let i=0;i<contentArr.length;i++){
+        contentArr[i]="("+(i+1)+") "+contentArr[i];
+    }
+    // console.log(contentArr);
+    for(let i=0;i<contentArr.length;i++){
+        console.log(contentArr[i]);
+    }
+}
+
+function valueOfB(){
+    let count=1;
+    for(let i=0;i<contentArr.length;i++){
+        if(contentArr[i]!=""){
+            contentArr[i]="("+count+") "+contentArr[i];
+            count++;
+        }
+    }
+    // console.log(contentArr);
+    for(let i=0;i<contentArr.length;i++){
+        console.log(contentArr[i]);
+    }
+}
+
 
 
