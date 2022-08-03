@@ -16,7 +16,8 @@ It is used to display or make a copy content of one or more files in the termina
 <br>
 <strong>4) node wcat.js -n filepath => give numbering to all the lines</strong>
 <br>
-<strong>5) node wcat -b filepath => give numbering to non-empty lines</strong>
+<strong>5) node wcat.js -b filepath => give numbering to non-empty lines</strong>
+<strong>6) node wcat.js -c filepath => creates the file</strong>
 <br>
 <br>
 <strong>* We can mix and match the options.</strong>
