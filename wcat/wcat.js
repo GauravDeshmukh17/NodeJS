@@ -18,7 +18,7 @@ for(let i=0;i<inputArr.length;i++){
     }
 }
 // console.log(optionArr);
-// console.log(filesArr);
+// console.log(filesArr);   
 
 
 // checking wheather file exists or not
@@ -79,8 +79,10 @@ for(let i=0;i<contentArr.length;i++){
 
 
 // console.log(tempArr);
-for(let i=0;i<tempArr.length;i++){
-    console.log(tempArr[i]);
+if(optionArr.includes("-s") || optionArr.length==0){
+    for(let i=0;i<tempArr.length;i++){
+        console.log(tempArr[i]);
+    }
 }
 
 
@@ -103,9 +105,10 @@ if(indexOfN!=-1 && indexOfB!=-1){
     }
 }
 else{
-    if(indexOfN==-1){
+    if(indexOfN==-1 && indexOfB!=-1){
         finalOption="-b";
-    }else{
+    }
+    else if(indexOfB==-1 && indexOfN!=-1){
         finalOption="-n";
     }
 }
