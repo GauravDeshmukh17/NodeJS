@@ -106,8 +106,10 @@ for(let i=0;i<filesArr.length;i++){
     let fileContent=fs.readFileSync(filesArr[i]);
     content=content+fileContent+ "\r\n";
 }
-
 // console.log(content);
+
+content=content.substring(0,content.length-1);  
+// removes extra last line that comes because of above for loop code
 
 contentArr=content.split("\r\n");
 // console.log(contentArr);
