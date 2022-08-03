@@ -36,6 +36,6 @@ It is used to display or make a copy content of one or more files in the termina
 <br>
 <strong>4) If same file is created again then it says "file alraedy exist"</strong>
 <br>
-<strong>5) If file is not created but deleted then it gives error as it is not possible</strong>
-<br>
 <strong>5) Only after creating file -s -n -b can be applied otherwise it gives error</strong>
+<br>
+<strong>6) If file is not created but deleted then it gives error as it is not possible</strong>
