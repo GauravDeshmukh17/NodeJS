@@ -20,6 +20,8 @@ It is used to display or make a copy content of one or more files in the termina
 <br>
 <strong>6) node wcat.js -c filepath => creates the file</strong>
 <br>
+<strong>7) node wcat.js -d filepath => deletes the file</strong>
+<br>
 <br>
 <strong>* We can mix and match the options.</strong>
 <br>

@@ -24,31 +24,29 @@ for(let i=0;i<inputArr.length;i++){
 //------------------------- Create File ------------------------------------
 
 // According to input which file is present is checked (file which is present and comes first in input out off all existing files) and if file is not present then according to input files are created.
-
-let fileExists;
-let existFileName;
-for(let i=0;i<filesArr.length;i++){
-    fileExists=fs.existsSync(filesArr[i]);
-    if(fileExists==true){
-        fileExists=true;
-        existFileName=filesArr[i];
-        break;
+let isPresentC=optionArr.includes("-c");
+if(isPresentC){
+    let fileExists;
+    let existFileName;
+    for(let i=0;i<filesArr.length;i++){
+        fileExists=fs.existsSync(filesArr[i]);
+        if(fileExists==true){
+            fileExists=true;
+            existFileName=filesArr[i];
+            break;
+        }
     }
-}
 
-if(fileExists){
-    console.log("error ^ \n"+existFileName+" already exist");
-    return;
-}
-else{
-    let isPresentC=optionArr.includes("-c");
-    if(isPresentC){
+    if(fileExists){
+        console.log("error ^ \n"+existFileName+" already exist");
+        return;
+    }
+    else{
 
         if(optionArr[0]!="-c"){
             console.log("error ^ \n"+filesArr[0]+" does not exist");
             return;
         }
-
         else{
             for(let i=0;i<filesArr.length;i++){
                 let createFile=fs.appendFileSync(filesArr[i],"");
@@ -60,6 +58,37 @@ else{
 
 //-----------------------------------------------------------------------
 
+//-------------------------- Delete File --------------------------------
+
+let isPresentD=optionArr.includes("-d");
+if(isPresentD){
+
+    let fileExists;
+    let notExistingFileName;
+    for(let i=0;i<filesArr.length;i++){
+        fileExists=fs.existsSync(filesArr[i]);
+        if(fileExists==false){
+            fileExists=false;
+            notExistingFileName=filesArr[i];
+            break;
+        }
+    }
+
+    if(fileExists==false){
+        console.log("error ^\n"+notExistingFileName+" does not exist");
+        return;
+    }
+    else{
+        for(let i=0;i<filesArr.length;i++){
+            console.log(fs.unlinkSync(filesArr[i]));
+        }
+        return;
+    }
+
+}
+
+
+//-----------------------------------------------------------------------
 
 // checking wheather file exists or not
 for(let i=0;i<filesArr.length;i++){
