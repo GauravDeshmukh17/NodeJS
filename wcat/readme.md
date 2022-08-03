@@ -2,19 +2,30 @@
 
 It is used to display or make a copy content of one or more files in the terminal
 
-General Syntax: node wcat.js [options] [filepaths] option to remove big line break (-s) option to add line number to non empty lines (-b) option to add line numbers to all lines (-n)
+<h2>General Syntax : node wcat.js [options] [filepaths]</h2> 
+<strong>option to remove big line break (-s) option to add line number to non empty lines (-b) option to add line numbers to all lines (-n)</strong>
+<br>
 
-Commands:
+<h3>Commands:</h3>
 
-1) node wcat.js filepath => displays content of the file in the terminal ✔
-2) node wcat.js filepath1 filepath2 filepath3... => displays content of all files in the terminal in (contactinated form) in the given order. ✅
-3) node wcat.js -s filepath => convert big line breaks into a singular line break
-4) node wcat.js -n filepath => give numbering to all the lines
-5) node wcat -b filepath => give numbering to non-empty lines
-We can mix and match the options.
+<strong>1) node wcat.js filepath => displays content of the file in the terminal ✔</strong>
+<br>
+<strong>2) node wcat.js filepath1 filepath2 filepath3... => displays content of all files in the terminal in (contactinated form) in the given order. ✅</strong>
+<br>
+<strong>3) node wcat.js -s filepath => convert big line breaks into a singular line break</strong>
+<br>
+<strong>4) node wcat.js -n filepath => give numbering to all the lines</strong>
+<br>
+<strong>5) node wcat -b filepath => give numbering to non-empty lines</strong>
+<br>
+<br>
+<strong>* We can mix and match the options.</strong>
+<br>
 
-Edge cases:
+<h3>Edge cases:</h3>
 
-1) If file entered is not found then it gives file does not exist error. ✅
-2) -n and -b are 2 options which are mutually exclusive so if user types both of them together only the first entered option should work.
-3) -s and any one or both from -n and -b is present then -s will be executed first and then -n and -b according second rule
+<strong>1) If file entered is not found then it gives file does not exist error. ✅</strong>
+<br>
+<strong>2) -n and -b are 2 options which are mutually exclusive so if user types both of them together only the first entered option should work.</strong>
+<br>
+<strong>3) -s and any one or both from -n and -b is present then -s will be executed first and then -n and -b according second rule</strong>
