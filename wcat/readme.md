@@ -33,3 +33,9 @@ It is used to display or make a copy content of one or more files in the termina
 <strong>2) -n and -b are 2 options which are mutually exclusive so if user types both of them together only the first entered option should work.</strong>
 <br>
 <strong>3) -s and any one or both from -n and -b is present then -s will be executed first and then -n and -b according second rule</strong>
+<br>
+<strong>4) If same file is created again then it says "file alraedy exist"</strong>
+<br>
+<strong>5) If file is not created but deleted then it gives error as it is not possible</strong>
+<br>
+<strong>5) Only after creating file -s -n -b can be applied otherwise it gives error</strong>
