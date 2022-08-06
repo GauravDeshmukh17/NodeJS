@@ -33,8 +33,17 @@ function organize(srcPath){
     console.log(allFiles);
 
     for(let i=0;i<allFiles.length;i++){
-        let ext=path.extname(allFiles[i]);
-        console.log(ext);
+
+        let pathOfFile=path.join(srcPath,allFiles[i]);
+        // console.log(pathOfFile);
+        let isFilePresent=fs.lstatSync(pathOfFile).isFile();
+        // console.log(isFilePresent);
+
+        if(isFilePresent){
+            let ext=path.extname(allFiles[i]).split(".")[1];
+            console.log(ext);
+        }
+
     }
 
 
