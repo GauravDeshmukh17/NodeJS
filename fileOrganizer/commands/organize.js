@@ -6,7 +6,7 @@ let types={
 
     media:["mp4","mkv","mp3"],
     archives:["zip","7z","rar","tar","gz","ar","iso","xz"],
-    documents:["docx","doc","pdf","xlsx","odt","ods","odp","odg","odf","txt","ps","tex"],
+    documents:["docx","doc","pdf","xlsx","odt","ods","odp","odg","odf","txt","ps","tex","ini","msi","msix"],
     app:["exe","dmg","pkg","deb"],
     images:["png","jpg","jpeg"]
 }
@@ -48,7 +48,7 @@ function organize(srcPath){
             // console.log(folderName);
 
             let createFolder=copyFilesToDest(srcPath,pathOfFile,folderName);
-            console.log(createFolder);
+            // console.log(createFolder);
         }
 
     }
@@ -78,9 +78,11 @@ function copyFilesToDest(srcPath,pathOfFile,folderName){
     fs.copyFileSync(pathOfFile,destFilePath);
 }
 
-let srcPath="/Users/DELL/OneDrive/Desktop/HTML1/Node/fileOrganizer/downloads";
-organize(srcPath);
+// let srcPath;
+// let srcPath="/Users/DELL/OneDrive/Desktop/HTML1/Node/fileOrganizer/downloads";
+// organize(srcPath);
 
 
-
-
+module.exports={
+    orgz:organize
+}
