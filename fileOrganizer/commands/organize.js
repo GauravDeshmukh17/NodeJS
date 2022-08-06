@@ -2,7 +2,7 @@ const fs=require("fs");
 const { extname } = require("node:path/win32");
 const path=require("path");
 
-let type={
+let types={
 
     media:["mp4","mkv","mp3"],
     archives:["zip","7z","rar","tar","gz","ar","iso","xz"],
@@ -30,7 +30,8 @@ function organize(srcPath){
 
 
     let allFiles=fs.readdirSync(srcPath);
-    console.log(allFiles);
+    // console.log(allFiles);
+
 
     for(let i=0;i<allFiles.length;i++){
 
@@ -42,11 +43,24 @@ function organize(srcPath){
         if(isFilePresent){
             let ext=path.extname(allFiles[i]).split(".")[1];
             console.log(ext);
+
+            let folderName=getFolderName(ext);
+            console.log(folderName);
         }
 
     }
 
+}
 
+function getFolderName(ext){
+
+    for(let key in types){
+        for(let i=0;i<types[key].length;i++){
+            if(types[key][i]==ext){
+                return key;
+            }
+        }
+    }
 }
 
 let srcPath="/Users/DELL/OneDrive/Desktop/HTML1/Node/fileOrganizer/downloads";
