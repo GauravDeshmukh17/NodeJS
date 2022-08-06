@@ -1,4 +1,5 @@
-let helpFun=require("./commands/help")
+let helpFun=require("./commands/help");
+let organizeFun=require("./commands/organize");
 
 let inputArr=process.argv.slice(2);
 let command=inputArr[0];
@@ -13,11 +14,10 @@ switch(command){
         break;
 
     case "organize":
-        console.log("This is organize command");    
+        organizeFun.exportedorganize(); 
         break;
 
     case "help":
-        // console.log("This is help command");
         helpFun.exportedHelp();
         break;
     
