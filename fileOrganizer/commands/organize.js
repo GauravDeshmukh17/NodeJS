@@ -42,10 +42,13 @@ function organize(srcPath){
 
         if(isFilePresent){
             let ext=path.extname(allFiles[i]).split(".")[1];
-            console.log(ext);
+            // console.log(ext);
 
             let folderName=getFolderName(ext);
-            console.log(folderName);
+            // console.log(folderName);
+
+            let createFolder=copyFilesToDest(srcPath,pathOfFile,folderName);
+            console.log(createFolder);
         }
 
     }
@@ -61,6 +64,18 @@ function getFolderName(ext){
             }
         }
     }
+}
+
+function copyFilesToDest(srcPath,pathOfFile,folderName){
+
+    let destFolderPath=path.join(srcPath,"organized_files",folderName);
+    if(fs.existsSync(destFolderPath)==false){
+        fs.mkdirSync(destFolderPath);
+    }
+
+    let fileName=path.basename(pathOfFile);
+    let destFilePath=path.join(destFolderPath,fileName);
+    fs.copyFileSync(pathOfFile,destFilePath);
 }
 
 let srcPath="/Users/DELL/OneDrive/Desktop/HTML1/Node/fileOrganizer/downloads";
