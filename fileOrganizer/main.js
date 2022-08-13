@@ -4,6 +4,7 @@ let organizeFun=require("./commands/organize");
 let inputArr=process.argv.slice(2);
 let command=inputArr[1];
 
+
 // console.log(inputArr);
 // console.log(command);
 
