@@ -27,7 +27,7 @@ function getMatchDetails(html){
     // console.log(descArr);
 
     // get match number
-    console.log("\t\t\t"+descArr[0]);
+    console.log("\t\t\t"+descArr[0]); 
 
 
     //get team names
@@ -48,10 +48,55 @@ function getMatchDetails(html){
 
     // get result
     let resultOfMatch=selecTool('p[class="ds-text-tight-m ds-font-regular ds-truncate ds-text-typo-title"]');
-    console.log("Result : "+resultOfMatch.text());
+    console.log("Result : "+resultOfMatch.text()+"\n");
+
+
+    //Inning details
+    let allBatsmanTable=selecTool(".ds-w-full.ds-table.ds-table-md.ds-table-auto.ci-scorecard-table tbody");
+    let htmlString="";
+    let count=0;
+    for(let i=0;i<allBatsmanTable.length;i++){
+        htmlString+=selecTool(allBatsmanTable[i]).html();
+        let allRows=selecTool(allBatsmanTable[i]).find("tr");
+        // console.log(allRows.length);
+        console.log("------- "+selecTool(teamNames[i]).text()+" Scorecard -------\n");
+        for(let j=0;j<allRows.length-3;j++){
+            // let playerData=selecTool(allRows[j]).text();
+            // console.log(playerData);
+            let eachCol=selecTool(selecTool(allRows[j])).find("td");
+            // for(let k=0;k<eachCol.length;k++){
+            //     console.log(selecTool(eachCol[k]).text());
+            // }
+            if(eachCol.length==8){
+                console.log("Batsman : "+selecTool(eachCol[0]).text());
+                console.log("Total Runs : "+selecTool(eachCol[2]).text());
+                console.log("Total Balls : "+selecTool(eachCol[3]).text());
+                console.log("Total 4's : "+selecTool(eachCol[5]).text());
+                console.log("Total 6's : "+selecTool(eachCol[6]).text());
+                console.log("Strike Rate(SR) : "+selecTool(eachCol[7]).text());
+                console.log("Team : "+selecTool(teamNames[i]).text());
+                console.log();
+            }
+            else{
+                // do nothing
+            }
+        }
+    
+    }
     console.log("===============================================================");
+    // console.log(htmlString);
 
 
+    // let playerDetails=selecTool(".ds-w-full.ds-table.ds-table-md.ds-table-auto.ci-scorecard-table>tbody>tr");
+    // console.log(playerDetails);
+    // console.log(playerDetails.text());
+    // console.log(playerDetails.length);
+    // for(let i=0;i<playerDetails.length;i++){
+
+    //     let allCol=selecTool(playerDetails[i]).find("td");
+    //     console.log(allCol.text());
+        
+    // }
 
 }
 
