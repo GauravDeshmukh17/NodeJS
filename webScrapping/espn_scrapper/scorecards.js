@@ -1,5 +1,7 @@
 const request=require("request");
 const cheerio=require("cheerio");
+const fs=require("fs");
+const path=require("path");
 
 function getInfoFromScorecard(url){
 
@@ -39,16 +41,19 @@ function getMatchDetails(html){
 
     
     // get venue
-    console.log("Venue :"+descArr[1]);
+    let venue=descArr[1];
+    console.log("Venue :"+venue);
 
 
     // get date
-    console.log("Date :"+descArr[2]+descArr[3]);
+    let date=descArr[2]+descArr[3];
+    console.log("Date :"+date);
 
 
     // get result
     let resultOfMatch=selecTool('p[class="ds-text-tight-m ds-font-regular ds-truncate ds-text-typo-title"]');
-    console.log("Result : "+resultOfMatch.text()+"\n");
+    let result=resultOfMatch.text()
+    console.log("Result : "+result+"\n");
 
 
     //Inning details
@@ -68,12 +73,18 @@ function getMatchDetails(html){
             //     console.log(selecTool(eachCol[k]).text());
             // }
             if(eachCol.length==8){
-                console.log("Batsman : "+selecTool(eachCol[0]).text());
-                console.log("Total Runs : "+selecTool(eachCol[2]).text());
-                console.log("Total Balls : "+selecTool(eachCol[3]).text());
-                console.log("Total 4's : "+selecTool(eachCol[5]).text());
-                console.log("Total 6's : "+selecTool(eachCol[6]).text());
-                console.log("Strike Rate(SR) : "+selecTool(eachCol[7]).text());
+                let batsman=selecTool(eachCol[0]).text()
+                console.log("Batsman : "+batsman);
+                let totalRuns=selecTool(eachCol[2]).text();
+                console.log("Total Runs : "+totalRuns);
+                let totalBalls=selecTool(eachCol[3]).text();
+                console.log("Total Balls : "+totalBalls);
+                let total4s=selecTool(eachCol[5]).text();
+                console.log("Total 4's : "+total4s);
+                let total6s=selecTool(eachCol[6]).text();
+                console.log("Total 6's : "+total6s);
+                let sr=selecTool(eachCol[7]).text();
+                console.log("Strike Rate(SR) : "+sr);
                 console.log("Team : "+selecTool(teamNames[i]).text());
                 console.log();
             }
