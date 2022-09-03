@@ -2,6 +2,7 @@ const request=require("request");
 const cheerio=require("cheerio");
 const fs=require("fs");
 const path=require("path");
+const xlsx=require("xlsx");
 
 function getInfoFromScorecard(url){
 
@@ -92,7 +93,7 @@ function getMatchDetails(html){
                 // do nothing
             }
 
-            processInformation(team1);
+            processInformation(team1,venue,date,result,batsman,totalRuns,totalBalls,total4s,total6s,sr);
             
         }
     
@@ -114,13 +115,53 @@ function getMatchDetails(html){
 
 }
 
-function processInformation(team1){
+function processInformation(team1,venue,date,result,batsman,totalRuns,totalBalls,total4s,total6s,sr){
 
     let teamNamePath=path.join(__dirname,"IPL",team1);
     let doesExist=fs.existsSync(teamNamePath);
     if(!doesExist){
         fs.mkdirSync(teamNamePath);
     }
+
+    let playerPath=path.join(teamNamePath,batsman+".xlsx");
+    let content=excelReader(playerPath,batsman);
+
+    let playerObj={
+        venue,
+        date,
+        result,
+        batsman,
+        totalRuns,
+        totalBalls,
+        total4s,
+        total6s,
+        sr
+    };
+
+    content.push(playerObj);
+    ecxelWriter(playerPath,content,batsman);
+}
+
+function excelReader(playerPath,batsman){
+
+    let doesExist=fs.existsSync(playerPath);
+    if(!doesExist){
+        return [];
+    }
+}
+
+function ecxelWriter(playerPath,jsObject,sheetName){
+
+    // creates new book
+    let newWorkBook=xlsx.utils.book_new();
+
+    // converts an array of JS objects to worksheet
+    let newWorkSheet=xlsx.utils.json_to_sheet(jsObject);
+
+    // aapends worksheet to workbook
+    xlsx.utils.book_append_sheet(newWorkBook,newWorkSheet,sheetName);
+    
+    
 }
 
 module.exports={
