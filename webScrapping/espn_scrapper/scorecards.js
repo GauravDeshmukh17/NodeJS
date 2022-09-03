@@ -91,6 +91,9 @@ function getMatchDetails(html){
             else{
                 // do nothing
             }
+
+            processInformation(team1);
+            
         }
     
     }
@@ -111,7 +114,14 @@ function getMatchDetails(html){
 
 }
 
+function processInformation(team1){
 
+    let teamNamePath=path.join(__dirname,"IPL",team1);
+    let doesExist=fs.existsSync(teamNamePath);
+    if(!doesExist){
+        fs.mkdirSync(teamNamePath);
+    }
+}
 
 module.exports={
     gifs:getInfoFromScorecard
