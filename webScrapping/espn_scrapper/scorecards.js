@@ -89,7 +89,15 @@ function getMatchDetails(html){
                 console.log("Team : "+selecTool(teamNames[i]).text());
                 console.log();
 
-                processInformation(team1,venue,date,result,batsman,totalRuns,totalBalls,total4s,total6s,sr);
+                let ownTeam=selecTool(teamNames[i]).text();
+                let oppTeam;
+                if(i==0){
+                    oppTeam=selecTool(teamNames[1]).text();
+                }
+                else{
+                    oppTeam=selecTool(teamNames[0]).text();
+                }
+                processInformation(ownTeam,oppTeam,venue,date,result,batsman,totalRuns,totalBalls,total4s,total6s,sr);
             }    
             
         }
@@ -112,9 +120,14 @@ function getMatchDetails(html){
 
 }
 
-function processInformation(team1,venue,date,result,batsman,totalRuns,totalBalls,total4s,total6s,sr){
+function processInformation(ownTeam,oppTeam,venue,date,result,batsman,totalRuns,totalBalls,total4s,total6s,sr){
 
-    let teamNamePath=path.join(__dirname,"IPL",team1);
+    let iplFolder=path.join(__dirname,"IPL");
+    if(!fs.existsSync(iplFolder)){
+        fs.mkdirSync(iplFolder);
+    }
+    // let teamNamePath=path.join(__dirname,"IPL",ownTeam);
+    let teamNamePath=path.join(iplFolder,ownTeam);
     let doesExist=fs.existsSync(teamNamePath);
     if(!doesExist){
         fs.mkdirSync(teamNamePath);
@@ -127,6 +140,8 @@ function processInformation(team1,venue,date,result,batsman,totalRuns,totalBalls
         venue,
         date,
         result,
+        ownTeam,
+        oppTeam,
         batsman,
         totalRuns,
         totalBalls,
