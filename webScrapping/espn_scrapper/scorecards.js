@@ -88,12 +88,9 @@ function getMatchDetails(html){
                 console.log("Strike Rate(SR) : "+sr);
                 console.log("Team : "+selecTool(teamNames[i]).text());
                 console.log();
-            }
-            else{
-                // do nothing
-            }
 
-            processInformation(team1,venue,date,result,batsman,totalRuns,totalBalls,total4s,total6s,sr);
+                processInformation(team1,venue,date,result,batsman,totalRuns,totalBalls,total4s,total6s,sr);
+            }    
             
         }
     
@@ -142,12 +139,17 @@ function processInformation(team1,venue,date,result,batsman,totalRuns,totalBalls
     ecxelWriter(playerPath,content,batsman);
 }
 
-function excelReader(playerPath,batsman){
+function excelReader(playerPath,sheetName){
 
     let doesExist=fs.existsSync(playerPath);
     if(!doesExist){
         return [];
     }
+
+    let workBook=xlsx.readFile(playerPath);
+    let excelData=workBook.Sheets[sheetName];
+    let playerObj=xlsx.utils.sheet_to_json(excelData);
+    return playerObj;
 }
 
 function ecxelWriter(playerPath,jsObject,sheetName){
@@ -161,7 +163,7 @@ function ecxelWriter(playerPath,jsObject,sheetName){
     // aapends worksheet to workbook
     xlsx.utils.book_append_sheet(newWorkBook,newWorkSheet,sheetName);
     
-    
+    xlsx.writeFile(newWorkBook,playerPath);
 }
 
 module.exports={
