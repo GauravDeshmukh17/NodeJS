@@ -31,6 +31,8 @@ function getMatchDetails(html){
 
     // get match number
     console.log("\t\t\t"+descArr[0]); 
+    let matchNo= console.log("\t\t\t"+descArr[0])+"\n";
+    fs.writeFileSync("scorecards.txt",matchNo,{flag:'a'}); 
 
 
     //get team names
@@ -39,21 +41,28 @@ function getMatchDetails(html){
     let team1=selecTool(teamNames[0]).text();
     let team2=selecTool(teamNames[1]).text();
     console.log("\t"+team1+" VS "+team2+"\n");
-
+    let teamInfo="\t"+team1+" VS "+team2+"\n";
+    fs.writeFileSync("scorecards.txt",teamInfo,{flag:'a'}); 
     
     // get venue
     let venue=descArr[1];
+    let venue1="Venue : "+venue+"\n";
+    fs.writeFileSync("scorecards.txt",venue1,{flag:'a'}); 
     console.log("Venue :"+venue);
 
 
     // get date
     let date=descArr[2]+descArr[3];
+    let date1="Date : "+descArr[2]+descArr[3]+"\n";
+    fs.writeFileSync("scorecards.txt",date1,{flag:'a'}); 
     console.log("Date :"+date);
 
 
     // get result
     let resultOfMatch=selecTool('p[class="ds-text-tight-m ds-font-regular ds-truncate ds-text-typo-title"]');
-    let result=resultOfMatch.text()
+    let result=resultOfMatch.text();
+    let result1="Result : "+resultOfMatch.text()+"\n";
+    fs.writeFileSync("scorecards.txt",result1,{flag:'a'}); 
     console.log("Result : "+result+"\n");
 
 
