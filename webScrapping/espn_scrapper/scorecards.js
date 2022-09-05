@@ -20,7 +20,6 @@ function cb(err,res,body){
     }
 }
 
-let contentArr=[];
 function getMatchDetails(html){
     
     let selecTool=cheerio.load(html);
@@ -31,7 +30,7 @@ function getMatchDetails(html){
 
     // get match number
     console.log("\t\t\t"+descArr[0]); 
-    let matchNo= console.log("\t\t\t"+descArr[0])+"\n";
+    let matchNo= "\t\t\t"+descArr[0]+"\n";
     fs.writeFileSync("scorecards.txt",matchNo,{flag:'a'}); 
 
 
@@ -116,7 +115,7 @@ function getMatchDetails(html){
                 console.log("Strike Rate(SR) : "+sr);
 
                 console.log("Team : "+selecTool(teamNames[i]).text());
-                let teamBelongs="Team : "+selecTool(teamNames[i]).text()+"\n";
+                let teamBelongs="Team : "+selecTool(teamNames[i]).text()+"\n\n";
                 fs.writeFileSync("scorecards.txt",teamBelongs,{flag:'a'}); 
                 console.log();
 
@@ -128,9 +127,10 @@ function getMatchDetails(html){
                 else{
                     oppTeam=selecTool(teamNames[0]).text();
                 }
-                // processInformation(ownTeam,oppTeam,venue,date,result,batsman,totalRuns,totalBalls,total4s,total6s,sr);
+                let ownTeamOppTeam=ownTeam+" VS "+oppTeam;
+                processInformation(ownTeam,oppTeam,venue,date,result,batsman,totalRuns,totalBalls,total4s,total6s,sr);
 
-                let obj={ownTeam,oppTeam,venue,date,result,batsman,totalRuns,totalBalls,total4s,total6s,sr};
+                let obj={ownTeamOppTeam,venue,date,result,batsman,totalRuns,totalBalls,total4s,total6s,sr};
                 
                 const data = JSON.stringify(obj);
                 fs.writeFileSync("scorecards.json",data,{flag:'a'});
@@ -152,6 +152,8 @@ function getMatchDetails(html){
     }
     console.log("===============================================================");
     let decoration1="===============================================================\n\n";
+    fs.writeFileSync("scorecards.txt",decoration1,{flag:'a'}); 
+
     // console.log(htmlString);
 
 
