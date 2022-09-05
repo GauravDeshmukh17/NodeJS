@@ -41,7 +41,7 @@ function getMatchDetails(html){
     let team1=selecTool(teamNames[0]).text();
     let team2=selecTool(teamNames[1]).text();
     console.log("\t"+team1+" VS "+team2+"\n");
-    let teamInfo="\t"+team1+" VS "+team2+"\n";
+    let teamInfo="\t"+team1+" VS "+team2+"\n\n";
     fs.writeFileSync("scorecards.txt",teamInfo,{flag:'a'}); 
     
     // get venue
@@ -61,7 +61,7 @@ function getMatchDetails(html){
     // get result
     let resultOfMatch=selecTool('p[class="ds-text-tight-m ds-font-regular ds-truncate ds-text-typo-title"]');
     let result=resultOfMatch.text();
-    let result1="Result : "+resultOfMatch.text()+"\n";
+    let result1="Result : "+resultOfMatch.text()+"\n\n";
     fs.writeFileSync("scorecards.txt",result1,{flag:'a'}); 
     console.log("Result : "+result+"\n");
 
@@ -75,6 +75,8 @@ function getMatchDetails(html){
         let allRows=selecTool(allBatsmanTable[i]).find("tr");
         // console.log(allRows.length);
         console.log("------- "+selecTool(teamNames[i]).text()+" Scorecard -------\n");
+        let decoration="------- "+selecTool(teamNames[i]).text()+" Scorecard -------\n\n";
+        fs.writeFileSync("scorecards.txt",decoration,{flag:'a'}); 
         for(let j=0;j<allRows.length-3;j++){
             // let playerData=selecTool(allRows[j]).text();
             // console.log(playerData);
@@ -84,20 +86,38 @@ function getMatchDetails(html){
             // }
             if(eachCol.length==8){
                 let batsman=selecTool(eachCol[0]).text();
-                contentArr.push(batsman);
+                let batsman1="Batsman : "+batsman+"\n";
+                fs.writeFileSync("scorecards.txt",batsman1,{flag:'a'}); 
                 console.log("Batsman : "+batsman);
+
                 let totalRuns=selecTool(eachCol[2]).text();
-                contentArr.push(totalRuns);
+                let totalRuns1="Total Runs : "+totalRuns+"\n";
                 console.log("Total Runs : "+totalRuns);
+                fs.writeFileSync("scorecards.txt",totalRuns1,{flag:'a'}); 
+
                 let totalBalls=selecTool(eachCol[3]).text();
+                let totalBalls1="Total Balls : "+totalBalls+"\n";
+                fs.writeFileSync("scorecards.txt",totalBalls1,{flag:'a'}); 
                 console.log("Total Balls : "+totalBalls);
+
                 let total4s=selecTool(eachCol[5]).text();
+                let total4s1="Total 4s : "+total4s+"\n";
+                fs.writeFileSync("scorecards.txt",total4s1,{flag:'a'}); 
                 console.log("Total 4's : "+total4s);
+
                 let total6s=selecTool(eachCol[6]).text();
+                let total6s1="Total 6s : "+total6s+"\n";
+                fs.writeFileSync("scorecards.txt",total6s1,{flag:'a'}); 
                 console.log("Total 6's : "+total6s);
+
                 let sr=selecTool(eachCol[7]).text();
+                let sr1="Strike Rate(SR) : "+sr+"\n";
+                fs.writeFileSync("scorecards.txt",sr1,{flag:'a'}); 
                 console.log("Strike Rate(SR) : "+sr);
+
                 console.log("Team : "+selecTool(teamNames[i]).text());
+                let teamBelongs="Team : "+selecTool(teamNames[i]).text()+"\n";
+                fs.writeFileSync("scorecards.txt",teamBelongs,{flag:'a'}); 
                 console.log();
 
                 let ownTeam=selecTool(teamNames[i]).text();
@@ -131,6 +151,7 @@ function getMatchDetails(html){
     
     }
     console.log("===============================================================");
+    let decoration1="===============================================================\n\n";
     // console.log(htmlString);
 
 
