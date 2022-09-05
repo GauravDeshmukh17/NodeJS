@@ -20,7 +20,7 @@ function cb(err,res,body){
     }
 }
 
-
+let contentArr=[];
 function getMatchDetails(html){
     
     let selecTool=cheerio.load(html);
@@ -74,9 +74,11 @@ function getMatchDetails(html){
             //     console.log(selecTool(eachCol[k]).text());
             // }
             if(eachCol.length==8){
-                let batsman=selecTool(eachCol[0]).text()
+                let batsman=selecTool(eachCol[0]).text();
+                contentArr.push(batsman);
                 console.log("Batsman : "+batsman);
                 let totalRuns=selecTool(eachCol[2]).text();
+                contentArr.push(totalRuns);
                 console.log("Total Runs : "+totalRuns);
                 let totalBalls=selecTool(eachCol[3]).text();
                 console.log("Total Balls : "+totalBalls);
@@ -97,7 +99,23 @@ function getMatchDetails(html){
                 else{
                     oppTeam=selecTool(teamNames[0]).text();
                 }
-                processInformation(ownTeam,oppTeam,venue,date,result,batsman,totalRuns,totalBalls,total4s,total6s,sr);
+                // processInformation(ownTeam,oppTeam,venue,date,result,batsman,totalRuns,totalBalls,total4s,total6s,sr);
+
+                let obj={ownTeam,oppTeam,venue,date,result,batsman,totalRuns,totalBalls,total4s,total6s,sr};
+                
+                const data = JSON.stringify(obj);
+                fs.writeFileSync("scorecards.json",data,{flag:'a'});
+                // fs.writeFileSync("scorecard.txt",data,{flag:'a'});
+                // fs.writeFile("scorecard.txt",data,{flag:'a'},cb);
+                // function cb(err,data){
+                //     if(err){
+                //         console.log("error",err);
+                //     }
+                //     else{
+                //         fs.appendFileSync("scorecard.txt",",");
+                //     }
+                // }
+
             }    
             
         }
@@ -180,6 +198,8 @@ function ecxelWriter(playerPath,jsObject,sheetName){
     
     xlsx.writeFile(newWorkBook,playerPath);
 }
+
+
 
 module.exports={
     gifs:getInfoFromScorecard

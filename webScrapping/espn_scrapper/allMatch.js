@@ -32,7 +32,7 @@ function allMatchLink(html){
         let fullLink="https://www.espncricinfo.com"+eachMatchLink;
         // console.log(fullLink);
         gifs(fullLink);
-        // break;
+        break;
     }
 
 
