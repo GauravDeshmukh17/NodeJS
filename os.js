@@ -22,7 +22,7 @@ console.log(a.totalmem());
 let myRestartTimeInHours=a.uptime()/3600;
 console.log(myRestartTimeInHours);
 
-console.log(a.userInfo())
+// console.log(a.userInfo())
 
 
 
