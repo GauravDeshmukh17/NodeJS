@@ -136,9 +136,11 @@ function getMatchDetails(html){
                 let obj={ownTeamOppTeam,venue,date,result,batsman,totalRuns,totalBalls,total4s,total6s,sr};
             
                 const data = JSON.stringify(obj);
-                if(!fs.existsSync("scorecards.json")){
-                    fs.writeFileSync("scorecards.json",data,{flag:'a'});
-                }
+                fs.writeFileSync("scorecards.json",data,{flag:'a'});
+                // if(!fs.existsSync("scorecards.json")){
+                //     fs.writeFileSync("scorecards.json",data,{flag:'a'});
+                // }
+                
                 // fs.writeFileSync("scorecard.txt",data,{flag:'a'});
                 // fs.writeFile("scorecard.txt",data,{flag:'a'},cb);
                 // function cb(err,data){
