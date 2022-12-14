@@ -29,19 +29,23 @@ browserOpenPromise
     //     return loginThroughGoogle;
     // })
     .then(function(){
-        console.log("Email Typed");
+        console.log("Hackerrank login page opened");
         let emailWillBeTypedPromise=cTab.type('input[name="username"]',email);
         return emailWillBeTypedPromise;
     })
     .then(function(){
-        console.log("Password Typed");
+        console.log("Email Typed");
         let passwordWillBeTypedPromise=cTab.type('input[name="password"]',password);
         return passwordWillBeTypedPromise;
     })
     .then(function(){
-        console.log("Login Done !");
+        console.log("Password Typed");
         let loginWillBeDonePromise=cTab.click('button[type="submit"]');
         loginWillBeDonePromise;
+    })
+    .then(function(){
+        console.log("HackerRank Login Done !");
+        
     })
     .catch(function(err){
         console.log(err);
