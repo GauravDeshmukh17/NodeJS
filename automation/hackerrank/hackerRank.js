@@ -84,13 +84,36 @@ browserOpenPromise
     })
     .then(function(linksArr){
         console.log(linksArr);
+        console.log("Got all links");
+        let questionWillBeSolvedPromise=questionSolver(linksArr[0],0);
+        return questionWillBeSolvedPromise;
+    })
+    .then(function(){
+        console.log("Question is solved");
     })
     .catch(function(err){
         console.log(err);
     })
+
     
+function questionSolver(url,idx){
+    return new Promise(function(resolve,reject){
+            let fullLink=`https://www.hackerrank.com${url}`;
+            console.log(fullLink);
+            let goToQuesPagePromise=cTab.goto(fullLink);
+            goToQuesPagePromise
+                .then(function(){
+                    console.log("Question opened");
+                    resolve();
+                })
+                .catch(function(err){
+                    reject(err);
+                })
+        })
+    }
+
 function WaitAndClick(selector){
-    let myPromise=new Promise(function(){
+    let myPromise=new Promise(function(resolve,reject){
         let waitForSelectorpromise=cTab.waitForSelector(selector);
 
         waitForSelectorpromise
@@ -98,6 +121,13 @@ function WaitAndClick(selector){
             let clickPromise=cTab.click(selector);
             return clickPromise;
         })
+        .then(function(){
+            resolve();
+        })
+        .catch(function(err){
+            reject(err);
+        })
     })
-
+    return myPromise;
 }
+
