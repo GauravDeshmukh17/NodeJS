@@ -104,6 +104,26 @@ function questionSolver(url,idx){
             goToQuesPagePromise
                 .then(function(){
                     console.log("Question opened");
+                    let languageSelection=WaitAndClick('.css-19bqh2r');
+                    return languageSelection;
+                })
+                .then(function(){
+                    console.log("Language selection");
+                    let typeJavaLanguagePromise=cTab.type('.css-1hwfws3',"java");
+                    return typeJavaLanguagePromise;
+                })
+                .then(function(){
+                    console.log("Java Typed");
+                    let pressEnterPromise=cTab.keyboard.press('Enter');
+                    return pressEnterPromise;
+                })
+                .then(function(){
+                    console.log("Enter pressed");
+                    let leaveEnterPromise=cTab.keyboard.up("Enter");
+                    return leaveEnterPromise;
+                })
+                .then(function(){
+                    console.log("Enter leaved");
                     resolve();
                 })
                 .catch(function(err){
