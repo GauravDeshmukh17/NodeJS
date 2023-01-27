@@ -1,7 +1,7 @@
 const puppeteer=require("puppeteer");
+const {answer}=require("./code");
+const obj=require("./secrets");
 
-let email="india17032001@gmail.com";
-let password="@17MARCH2001";
 let cTab;
 
 let browserOpenPromise=puppeteer.launch({
@@ -32,12 +32,12 @@ browserOpenPromise
     // })
     .then(function(){
         console.log("Hackerrank login page opened");
-        let emailWillBeTypedPromise=cTab.type('input[name="username"]',email);
+        let emailWillBeTypedPromise=cTab.type('input[name="username"]',obj.email,{delay:100});
         return emailWillBeTypedPromise;
     })
     .then(function(){
         console.log("Email Typed");
-        let passwordWillBeTypedPromise=cTab.type('input[name="password"]',password);
+        let passwordWillBeTypedPromise=cTab.type('input[name="password"]',obj.password);
         return passwordWillBeTypedPromise;
     })
     .then(function(){
@@ -124,6 +124,76 @@ function questionSolver(url,idx){
                 })
                 .then(function(){
                     console.log("Enter leaved");
+                    let checkBoxWaitAndClickPromise=WaitAndClick('.checkbox-input');
+                    return checkBoxWaitAndClickPromise;
+                })
+                .then(function(){
+                    console.log("Check Box Ticked");
+                    let waitForInputBoxPromise=cTab.waitForSelector('.custominput');
+                    return waitForInputBoxPromise;
+                })
+                .then(function(){
+                    console.log("Wait for input box completed");
+                    let questionTypePromise=cTab.type('.custominput',answer[idx],{delay:100});
+                    return questionTypePromise;
+                })
+                .then(function(){
+                    console.log("Question typed");
+                    let controlPressPromise=cTab.keyboard.down("Control");
+                    return controlPressPromise;
+                })
+                .then(function(){
+                    console.log("Control pressed");
+                    let aPressPromise=cTab.keyboard.press("a");
+                    return aPressPromise;
+                })
+                .then(function(){
+                    console.log("a pressed");
+                    let xPressPromise=cTab.keyboard.press("x");
+                    return xPressPromise;
+                })
+                .then(function(){
+                    console.log("x pressed");
+                    let controlLeavePromise=cTab.keyboard.up("Control");
+                    return controlLeavePromise;
+                })
+                .then(function(){
+                    console.log("control leaved");
+                    let aLeavePromise=cTab.keyboard.up("a");
+                    return aLeavePromise;
+                })
+                .then(function(){
+                    console.log("a leaved");
+                    let xLeavePromise=cTab.keyboard.up("x");
+                    return xLeavePromise;
+                })
+                .then(function(){
+                    console.log("x leaved");
+                    let clickPromise=cTab.click('.view-lines');
+                    return clickPromise;
+                })
+                .then(function(){
+                    console.log("clicked For Typing");
+                    let controlPressPromise=cTab.keyboard.down("Control");
+                    return controlPressPromise;
+                })
+                .then(function(){
+                    console.log("Control pressed");
+                    let aPressPromise=cTab.keyboard.press("a");
+                    return aPressPromise;
+                })
+                .then(function(){
+                    console.log("a pressed");
+                    let vPressPromise=cTab.keyboard.press("v");
+                    return vPressPromise;
+                })
+                .then(function(){
+                    console.log("v pressed");
+                    let clickSumitPromise=cTab.click('.hr-monaco-submit');
+                    return clickSumitPromise;
+                })
+                .then(function(){
+                    console.log("Code submitted successfully !");
                     resolve();
                 })
                 .catch(function(err){
