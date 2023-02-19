@@ -61,9 +61,10 @@ function cb3(err,res){
     }
 }*/
 
+// --------------------------------------------------------------------------------
 // Question 2 => read f1.txt , f2.txt and f3.txt parallelly
 
-fs.readFile("f1.txt",function(err,res){
+/*fs.readFile("f1.txt",function(err,res){
     if(err){
         console.log(err);
     }
@@ -86,4 +87,19 @@ fs.readFile("f3.txt",function(err,res){
     else{
         console.log(res+"");
     }
-})
+})*/
+
+//  OR
+
+fs.readFile("f1.txt",cb);
+fs.readFile("f2.txt",cb);
+fs.readFile("f3.txt",cb);
+
+function cb(err,res){
+    if(err){
+        console.log(err);
+    }
+    else{
+        console.log(re+"");
+    }
+}
