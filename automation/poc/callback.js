@@ -1,11 +1,14 @@
 const fs=require("fs");
 
 // Question 1 => read files f1.txt then f2.txt then f3.txt
-/*fs.readFile("f1.txt",function cb1(err,res){
+fs.readFile("f1.txt",function cb1(err,res){
     if(err){
         console.log(err);
     }
     else{
+        setTimeout(function(){
+            console.log("hello how are you ?");
+        },2000);
         console.log(res+"");
         fs.readFile("f2.txt",function cb2(err,res){
             if(err){
@@ -25,10 +28,11 @@ const fs=require("fs");
             }
         });
     }
-});*/
+});
 
 
 // 1. solution of callback hell
+// 1st way to overcome callback hell is to sepetate the functions
 /*fs.readFile("f1.txt",cb1);
 
 function cb1(err,res){
@@ -91,7 +95,7 @@ fs.readFile("f3.txt",function(err,res){
 
 //  OR
 
-fs.readFile("f1.txt",cb);
+/*fs.readFile("f1.txt",cb);
 fs.readFile("f2.txt",cb);
 fs.readFile("f3.txt",cb);
 
@@ -100,6 +104,6 @@ function cb(err,res){
         console.log(err);
     }
     else{
-        console.log(re+"");
+        console.log(res+"");
     }
-}
+}*/
