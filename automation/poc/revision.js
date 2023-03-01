@@ -23,7 +23,7 @@ createPromise.then(function(data){
 })*/
 
 
-function greet(msg){
+/*function greet(msg){
     let myPromise=new Promise(function(resolve,reject){
         if(msg=="hello"){
             resolve("hello");
@@ -69,5 +69,18 @@ greet("hello")
     })
     .catch(function(err){
         console.log(err);
+    })*/
+
+
+const fs=require("fs");
+let fileWllBeReadPromise=fs.promises.readFile("f1.txt");
+
+fileWllBeReadPromise 
+    .then(function(data){
+        console.log(data+"");
+    })
+    .catch(function(err){
+        // console.log(err);
+        console.log("Hello");
     })
     
