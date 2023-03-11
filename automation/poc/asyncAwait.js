@@ -51,6 +51,7 @@ console.log("YOLO");
 
 
 
+/*
 async function showAvatar() {
 
     // read our JSON
@@ -81,10 +82,10 @@ async function showAvatar() {
   }
   
   showAvatar();
+*/
 
 
-
-  /*
+  
   async function showAvatar() {
 
     // read github user 
@@ -99,13 +100,38 @@ async function showAvatar() {
     img.className = "promise-avatar-example";
     document.body.append(img);
   
-    // // wait 3 seconds
-    await new Promise((resolve, reject) => setTimeout(resolve, 3000));
-  
+    // wait 3 seconds
+    await new Promise(function(resolve, reject){
+        setTimeout(resolve, 3000);
+     })
     img.remove();
   
-    return githubUser;
+    // return githubUser;
   }
   
   showAvatar();
-  */  
+
+
+
+ /*try{
+    console.log("I am try");
+ } 
+ catch(err){
+    console.log(err);
+ }
+ finally{
+    console.log("I am always executed");
+ }*/
+
+
+ /*try{
+    throw new Error("I am Error")
+ } 
+ catch(err){
+    console.log(err);
+ }
+ finally{
+    console.log("I am always executed");
+ }*/
+
+ // Note : finally is always executed
